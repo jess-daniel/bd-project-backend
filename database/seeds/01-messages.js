@@ -8,19 +8,19 @@ exports.seed = function(knex) {
         {
           id: 1,
           name: 'Brad',
-          date: '04-08-2020',
+          created_at: '04-08-2020',
           message: 'Hello from 1, this is a test message!',
         },
         {
           id: 2,
           name: 'Tom',
-          date: '04-08-2020',
+          created_at: '04-08-2020',
           message: 'Hello from 2, this is a test message!',
         },
         {
           id: 3,
           name: 'James',
-          date: '04-08-2020',
+          created_at: '04-08-2020',
           message: 'Hello from 3, this is a test message!',
         },
       ]);

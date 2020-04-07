@@ -2,6 +2,10 @@ const router = require('express').Router();
 
 const Messages = require('./messagesModel');
 
+// middleware
+const messageValidation = require('../middlewares/messageValidation');
+const apiLimit = require('../middlewares/rateLimit');
+
 router.get('/', (req, res) => {
   Messages.getMessages()
     .then((messages) => {
@@ -31,17 +35,11 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', messageValidation, apiLimit, (req, res) => {
   const { body } = req;
   Messages.addMessage(body)
     .then((message) => {
-      if (message) {
-        res.status(201).json(message);
-      } else {
-        res
-          .status(400)
-          .json({ message: 'there was error creating the message' });
-      }
+      res.status(201).json(message);
     })
     .catch((err) => {
       res.status(500).json({ error: 'server error', err });
