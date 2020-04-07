@@ -6,6 +6,7 @@ const cors = require('cors');
 const server = express();
 
 // imports
+const messagesRouter = require('../messages/messagesRouter');
 
 // global middlewares
 server.use(helmet());
@@ -13,6 +14,7 @@ server.use(express.json());
 server.use(cors());
 
 // routes
+server.use('/api/messages', messagesRouter);
 
 // sanity check
 server.get('/', (req, res) => {
